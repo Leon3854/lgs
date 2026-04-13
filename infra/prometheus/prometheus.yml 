@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 5s # Частота сбора для демо-эффекта
+
+scrape_configs:
+  - job_name: 'nestjs-api'
+    metrics_path: '/metrics' # Тот самый путь, который мы пропишем в NestJS
+    static_configs:
+      - targets: ['api:3000'] # Обращаемся к контейнеру бэкенда внутри сети Docker
