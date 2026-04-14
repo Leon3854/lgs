@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.7.0",
   "engineVersion": "75cbdc1eb7150937890ad5465d861175c6624711",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel ScenarioRun {\n  id        String   @id @default(uuid())\n  type      String\n  status    String\n  createdAt DateTime @default(now())\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"ScenarioRun\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"ScenarioRun.findUnique\",\"ScenarioRun.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"ScenarioRun.findFirst\",\"ScenarioRun.findFirstOrThrow\",\"ScenarioRun.findMany\",\"data\",\"ScenarioRun.createOne\",\"ScenarioRun.createMany\",\"ScenarioRun.createManyAndReturn\",\"ScenarioRun.updateOne\",\"ScenarioRun.updateMany\",\"ScenarioRun.updateManyAndReturn\",\"create\",\"update\",\"ScenarioRun.upsertOne\",\"ScenarioRun.deleteOne\",\"ScenarioRun.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"ScenarioRun.groupBy\",\"ScenarioRun.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"type\",\"status\",\"createdAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\"]"),
+  graph: "KQkQBxoAACIAMBsAAAQAEBwAACIAMB0BAAAAAR4BACMAIR8BACMAISBAACQAIQEAAAABACABAAAAAQAgBxoAACIAMBsAAAQAEBwAACIAMB0BACMAIR4BACMAIR8BACMAISBAACQAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAEHQEAAAABHgEAAAABHwEAAAABIEAAAAABAQgAAAkAIAQdAQAAAAEeAQAAAAEfAQAAAAEgQAAAAAEBCAAACwAwAQgAAAsAMAQdAQAoACEeAQAoACEfAQAoACEgQAApACECAAAAAQAgCAAADgAgBB0BACgAIR4BACgAIR8BACgAISBAACkAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgAxUAACUAIBYAACcAIBcAACYAIAcaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfAQAbACEgQAAcACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAcaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfAQAbACEgQAAcACEOFQAAHgAgFgAAIQAgFwAAIQAgIQEAAAABIgEAAAAEIwEAAAAEJAEAAAABJQEAAAABJgEAAAABJwEAAAABKAEAIAAhKQEAAAABKgEAAAABKwEAAAABCxUAAB4AIBYAAB8AIBcAAB8AICFAAAAAASJAAAAABCNAAAAABCRAAAAAASVAAAAAASZAAAAAASdAAAAAAShAAB0AIQsVAAAeACAWAAAfACAXAAAfACAhQAAAAAEiQAAAAAQjQAAAAAQkQAAAAAElQAAAAAEmQAAAAAEnQAAAAAEoQAAdACEIIQIAAAABIgIAAAAEIwIAAAAEJAIAAAABJQIAAAABJgIAAAABJwIAAAABKAIAHgAhCCFAAAAAASJAAAAABCNAAAAABCRAAAAAASVAAAAAASZAAAAAASdAAAAAAShAAB8AIQ4VAAAeACAWAAAhACAXAAAhACAhAQAAAAEiAQAAAAQjAQAAAAQkAQAAAAElAQAAAAEmAQAAAAEnAQAAAAEoAQAgACEpAQAAAAEqAQAAAAErAQAAAAELIQEAAAABIgEAAAAEIwEAAAAEJAEAAAABJQEAAAABJgEAAAABJwEAAAABKAEAIQAhKQEAAAABKgEAAAABKwEAAAABBxoAACIAMBsAAAQAEBwAACIAMB0BACMAIR4BACMAIR8BACMAISBAACQAIQshAQAAAAEiAQAAAAQjAQAAAAQkAQAAAAElAQAAAAEmAQAAAAEnAQAAAAEoAQAhACEpAQAAAAEqAQAAAAErAQAAAAEIIUAAAAABIkAAAAAEI0AAAAAEJEAAAAABJUAAAAABJkAAAAABJ0AAAAABKEAAHwAhAAAAASwBAAAAAQEsQAAAAAEAAAAAAxUABhYABxcACAAAAAMVAAYWAAcXAAgBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIYGAUZGQk"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more ScenarioRuns
+   * const scenarioRuns = await prisma.scenarioRun.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more ScenarioRuns
+ * const scenarioRuns = await prisma.scenarioRun.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -188,7 +188,15 @@ export interface PrismaClient<
     extArgs: ExtArgs
   }>>
 
-    
+      /**
+   * `prisma.scenarioRun`: Exposes CRUD operations for the **ScenarioRun** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ScenarioRuns
+    * const scenarioRuns = await prisma.scenarioRun.findMany()
+    * ```
+    */
+  get scenarioRun(): Prisma.ScenarioRunDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
