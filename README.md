@@ -3,10 +3,22 @@
 Проект для генерации и мониторинга системных сигналов (логи, метрики, ошибки).
 
 ## 🚀 Быстрый старт
-1. **Запуск всей инфраструктуры:**
-   ```bash
-   docker-compose up -d --build
 
+### 1.0. Запуск всей инфраструктуры (Docker)
+Из корня проекта запустите ядро и мониторинг:
+```bash
+docker-compose up -d --build
+```
+### 1.2. Подготовка базы данных
+```bash
+docker-compose exec api npx prisma migrate dev --name init
+````
+### 1.3. Запуск панели управления (UI)
+````bash
+cd apps/web
+npm install
+npm run dev
+````
 # Development Timeline & Process
 
 ## ⏱ Отчет о разработке (Development Process)
