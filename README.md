@@ -12,15 +12,20 @@ docker-compose up -d --build
 ### 1.2. Подготовка базы данных
 ```bash
 docker-compose exec api npx prisma migrate dev --name init
-````
+```
 ### 1.3. Запуск панели управления (UI)
-````bash
+```bash
 cd apps/web
 npm install
 npm run dev
-````
-# Development Timeline & Process
+```
 
+### 1.4. Просмотр логов (Real-time)
+Чтобы увидеть, как генерируются сигналы в бэкенде:
+```bash
+docker-compose logs -f api
+# Development Timeline & Process
+```
 ## ⏱ Отчет о разработке (Development Process)
 Проект был реализован в рамках таймбокса (целевое время 6–8 часов) с четким разделением на этапы для обеспечения качества архитектуры и наблюдаемости.
 ### Этап 1: Инфраструктурный фундамент (День 1, 16:00 – 20:00)
