@@ -62,11 +62,12 @@ services:
     container_name: signal-lab-promtail
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock 
       - ./infra/promtail/config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
     networks:
       - app-network
+
 
   # --- OBSERVABILITY: Grafana ---
   grafana:
@@ -84,6 +85,6 @@ services:
     volumes:
       - ./infra/grafana/provisioning:/etc/grafana/provisioning
 
-  networks:
-    app-network:
-      driver: bridge
+networks:
+  app-network:
+    driver: bridge
