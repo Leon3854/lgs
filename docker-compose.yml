@@ -10,6 +10,8 @@ services:
       POSTGRES_DB: signal_lab
     ports:
       - "5438:5432" # Выносим наружу на 5438, чтобы не мешать другим проектам
+    networks:
+      - app-network
 
   # --- BACKEND (NestJS) ---
   api:
@@ -31,6 +33,8 @@ services:
       driver: "json-file"
       options:
         tag: "nestjs-api"
+    networks:
+      - app-network
 
   # --- OBSERVABILITY: Prometheus ---
   prometheus:
@@ -40,6 +44,8 @@ services:
       - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
+    networks:
+      - app-network
 
    # --- OBSERVABILITY: Loki (Logs) ---
   loki:
@@ -48,6 +54,19 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - app-network
+  
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: signal-lab-promtail
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./infra/promtail/config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - app-network
 
   # --- OBSERVABILITY: Grafana ---
   grafana:
@@ -60,5 +79,11 @@ services:
       - "3002:3000" # Grafana на 3002
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - app-network
     volumes:
       - ./infra/grafana/provisioning:/etc/grafana/provisioning
+
+  networks:
+    app-network:
+      driver: bridge

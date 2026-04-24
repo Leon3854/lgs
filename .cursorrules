@@ -1,0 +1,6 @@
+# Project Rules
+- Use NestJS best practices.
+- Follow Clean Architecture: domain should not depend on infrastructure.
+- Ensure all business logic is covered by unit tests.
+- Always use DTOs for input validation.
+- Every new feature must be logged for Grafana/Loki.
