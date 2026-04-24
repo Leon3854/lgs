@@ -12,6 +12,9 @@
 > Query {container="signal-lab-api"} to see live logs.<br/>
 
 ![Run time](./run_time.png)
+<p align="center">
+  <img src="./run_time.png" alt="Запуск логов" width="600"/>
+</p>
 
 ## 🚀 Быстрый старт
 
