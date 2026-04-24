@@ -3,7 +3,11 @@
 Проект для генерации и мониторинга системных сигналов (логи, метрики, ошибки).
 
 ## Дополнения 
-### 0.0.1 Observability Guide
+# База проливается автоматически
+```bash
+JUST RUN: docker-compose up -d
+```
+###  Verification Walkthrough
 ```bash
   docker-compose up -d --build
 ```
@@ -11,10 +15,16 @@
 > Navigate to Explore -> Select Loki<br/>
 > Query {container="signal-lab-api"} to see live logs.<br/>
 
-![Run time](./run_time.png)
 <p align="center">
   <img src="./run_time.png" alt="Запуск логов" width="600"/>
 </p>
+
+## Cursor & Marketplace Skills
+В проекте используются пользовательские правила курсора для разработки с поддержкой ИИ. Правила находятся в каталогах .cursorrules и .cursor/ и обеспечивают соблюдение архитектурных стандартов NestJS и стандартов логирования.
+
+## Hooks и Commands
+Автоматизация запуска: файл Makefile в корне проекта. 
+Это те самые "Commands". Теперь проект запускается одной командой make setup.
 
 ## 🚀 Быстрый старт
 
