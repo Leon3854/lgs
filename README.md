@@ -11,6 +11,8 @@
 > Navigate to Explore -> Select Loki<br/>
 > Query {container="signal-lab-api"} to see live logs.<br/>
 
+![Run time](./run_time.png)
+
 ## 🚀 Быстрый старт
 
 ### 1.0. Запуск всей инфраструктуры (Docker)
