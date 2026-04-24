@@ -2,6 +2,15 @@
 
 Проект для генерации и мониторинга системных сигналов (логи, метрики, ошибки).
 
+## Дополнения 
+### 0.0.1 Observability Guide
+```bash
+  docker-compose up -d --build
+```
+> Open http://localhost:3002 (admin/admin)<br/>
+> Navigate to Explore -> Select Loki<br/>
+> Query {container="signal-lab-api"} to see live logs.<br/>
+
 ## 🚀 Быстрый старт
 
 ### 1.0. Запуск всей инфраструктуры (Docker)
