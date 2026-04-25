@@ -17,6 +17,12 @@ make setup
 ```bash
 JUST RUN: docker-compose up -d
 ```
+## После выполнения:
+
+🚀 API: http://localhost:3001
+📊 Grafana: http://localhost:3002 (admin/admin)
+🖥️ UI: http://localhost:5173
+
 ###  Verification Walkthrough
 ```bash
   docker-compose up -d --build
