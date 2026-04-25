@@ -19,9 +19,14 @@ JUST RUN: docker-compose up -d
 ```
 ## После выполнения:
 
-🚀 API: http://localhost:3001
-📊 Grafana: http://localhost:3002 (admin/admin)
-🖥️ UI: http://localhost:5173
+🚀 API: http://localhost:3001<br />
+📊 Grafana: http://localhost:3002 (admin/admin) <br/>
+🖥️ UI: http://localhost:5173<br/>
+
+### Что делает make setup:
+Собирает и запускает все Docker-контейнеры (API, БД, Prometheus, Loki, Grafana).<br/>
+Выполняет миграции Prisma для подготовки базы данных.<br/>
+Устанавливает зависимости для UI и запускает его в режиме разработки.<br/>
 
 ###  Verification Walkthrough
 ```bash
