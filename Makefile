@@ -3,4 +3,6 @@ up:
 migrate:
 	docker-compose exec api npx prisma migrate dev
 setup:
-	make up && make migrate
+	docker-compose up -d --build
+	docker-compose exec api npx prisma migrate dev --name init
+	cd apps/web && npm install && npm run dev
