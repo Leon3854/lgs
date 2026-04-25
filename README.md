@@ -28,11 +28,6 @@ JUST RUN: docker-compose up -d
 Выполняет миграции Prisma для подготовки базы данных.<br/>
 Устанавливает зависимости для UI и запускает его в режиме разработки.<br/>
 
-###  Verification Walkthrough
-```bash
-  docker-compose up -d --build
-```
-> Open http://localhost:3002 (admin/admin)<br/>
 > Navigate to Explore -> Select Loki<br/>
 > Query {container="signal-lab-api"} to see live logs.<br/>
 
