@@ -32,6 +32,7 @@ JUST RUN: docker-compose up -d
 
 ## ✅ Verification Walkthrough (4 сценария Observability)
 > 1. 📜 Логирование (Loki + Winston)<br/>
+
 Как убедиться, что структурированные логи пишутся:<br/>
 
 Откройте Grafana → Explore → выберите источник Loki.<br/>
