@@ -1,9 +1,9 @@
-# 🛰️ Signal Lab — Observability Playground
+# Signal Lab — Observability Playground
 
 Проект для генерации и мониторинга системных сигналов (логи, метрики, ошибки).
 
 ## Дополнения 
-## 🚀 Быстрый старт (Одной командой)
+## Быстрый старт (Одной командой)
 
 > **Полный стек одной командой:** БД, API, Observability, UI, Логи, Метрики и Трейсинг.
 
@@ -19,9 +19,9 @@ JUST RUN: docker-compose up -d
 ```
 ## После выполнения:
 
-🚀 API: http://localhost:3001<br />
-📊 Grafana: http://localhost:3002 (admin/admin) <br/>
-🖥️ UI: http://localhost:5173<br/>
+API: http://localhost:3001<br />
+Grafana: http://localhost:3002 (admin/admin) <br/>
+UI: http://localhost:5173<br/>
 
 ### Что делает make setup:
 Собирает и запускает все Docker-контейнеры (API, БД, Prometheus, Loki, Grafana).<br/>
@@ -30,8 +30,8 @@ JUST RUN: docker-compose up -d
 
 
 
-## ✅ Verification Walkthrough (4 сценария Observability)
-> 1. 📜 Логирование (Loki + Winston)<br/>
+## Verification Walkthrough (4 сценария Observability)
+> 1.  Логирование (Loki + Winston)<br/>
 
 Как убедиться, что структурированные логи пишутся:<br/>
 
@@ -44,7 +44,7 @@ JUST RUN: docker-compose up -d
   <img src="./run_time.png" alt="Запуск логов" width="600"/>
 </p>
 
-> 2. 📈 Метрики (Prometheus)
+> 2. Метрики (Prometheus)
  
 Как убедиться, что метрики собираются:
 
@@ -54,7 +54,7 @@ JUST RUN: docker-compose up -d
 
 Результат: Вы увидите метрику счётчика запросов к API.
 
-> 3. 📊 Дашборды (Grafana)
+> 3. Дашборды (Grafana)
 
 Как посмотреть на данные глазами SRE-инженера:
 
@@ -62,7 +62,7 @@ JUST RUN: docker-compose up -d
 
 Результат: Вы увидите предварительно настроенный дашборд с графиками RPS, Latency и Error Rate.
 
-> 4. 🐞 Отслеживание ошибок (Sentry)
+> 4. Отслеживание ошибок (Sentry)
 
 Как убедиться, что ошибки отлавливаются:
 
@@ -75,7 +75,7 @@ curl http://localhost:3001/debug-sentry
 
 Результат: Вы увидите зафиксированную ошибку с полным стектрейсом и контекстом.
 
-## ⚡ Commands (Hooks и автоматизация)
+##  Commands (Hooks и автоматизация)
 Вся рутина автоматизирована через Makefile:
 
 ### Команда	Что она делает
@@ -87,7 +87,7 @@ curl http://localhost:3001/debug-sentry
 
 > make ui-dev	Запуск панели управления (UI) в режиме разработки.
 
-## 🧠 Cursor Skills (AI Rules)
+## Cursor Skills (AI Rules)
 В проекте используются кастомные правила для Cursor AI, чтобы обеспечить соблюдение архитектурных стандартов и паттернов.
 
 ## Skill-файл	Назначение	Какую проблему решает
@@ -97,7 +97,7 @@ curl http://localhost:3001/debug-sentry
 
 > prisma-patterns.mdc	Паттерны работы с Prisma	Обеспечение целостности транзакций и грамотной работы с БД
 
-## 📦 Marketplace Skills (Объяснение)
+##  Marketplace Skills (Объяснение)
 
 Почему мы не использовали Marketplace Skills?
 
@@ -109,7 +109,7 @@ curl http://localhost:3001/debug-sentry
 
 Специфика: Marketplace-скиллы часто дают слишком общие советы, в то время как наши правила заточены под конкретный стек (NestJS, Prisma, Winston).
 
-## ⚙️ Obsrvability Stack (Полный список)
+##  Obsrvability Stack (Полный список)
 
 Задача	Инструмент	Порт<br/>
 Логирование	Loki (через Winston)	:3100<br/>
@@ -126,7 +126,7 @@ curl http://localhost:3001/debug-sentry
 Автоматизация запуска: файл Makefile в корне проекта. 
 Это те самые "Commands". Теперь проект запускается одной командой make setup.
 
-## 🚀 Быстрый старт
+##  Быстрый старт
 
 ### 1.0. Запуск всей инфраструктуры (Docker)
 Из корня проекта запустите ядро и мониторинг:
