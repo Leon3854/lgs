@@ -1,165 +1,63 @@
 # Signal Lab — Observability Playground
 
-Проект для генерации и мониторинга системных сигналов (логи, метрики, ошибки).
+Песочница для генерации и мониторинга системных сигналов: логи, метрики и ошибки — полный observability-стек одной командой.
 
-## Дополнения 
-## Быстрый старт (Одной командой)
+![NestJS](https://img.shields.io/badge/NestJS-11-E0234E?style=for-the-badge&logo=nestjs)
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=for-the-badge&logo=postgresql)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana)
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus)
+![Loki](https://img.shields.io/badge/Loki-F46800?style=for-the-badge&logo=grafana)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker)
 
-> **Полный стек одной командой:** БД, API, Observability, UI, Логи, Метрики и Трейсинг.
+## Что это
+
+Демо-стенд полного цикла observability: приложение генерирует сигналы (логи через Winston, метрики через Prometheus, ошибки через Sentry), а стек собирает и визуализирует их в Grafana. Практика для SRE-паттернов и отладки микросервисов.
+
+## Observability-стек
+
+| Задача | Инструмент | Порт |
+|---|---|---|
+| Логирование | Loki + Winston (Promtail) | :3100 |
+| Метрики | Prometheus | :9090 |
+| Ошибки / traces | Sentry | :9000 |
+| Визуализация | Grafana (admin/admin) | :3002 |
+| API | NestJS | :3001 |
+| UI | Next.js | :5173 |
+
+## Быстрый старт
 
 ```bash
+# Полный запуск: билд, миграции БД, старт UI
 make setup
-```
 
-# База проливается автоматически
-Быстрый старт: выполните команду 'make setup' для сборки, запуска контейнеров и выполнения миграций.<br/>
-
-```bash
-JUST RUN: docker-compose up -d
-```
-## После выполнения:
-
-API: http://localhost:3001<br />
-Grafana: http://localhost:3002 (admin/admin) <br/>
-UI: http://localhost:5173<br/>
-
-### Что делает make setup:
-Собирает и запускает все Docker-контейнеры (API, БД, Prometheus, Loki, Grafana).<br/>
-Выполняет миграции Prisma для подготовки базы данных.<br/>
-Устанавливает зависимости для UI и запускает его в режиме разработки.<br/>
-
-
-
-## Verification Walkthrough (4 сценария Observability)
-> 1.  Логирование (Loki + Winston)<br/>
-
-Как убедиться, что структурированные логи пишутся:<br/>
-
-Откройте Grafana → Explore → выберите источник Loki.<br/>
-
-Выполните запрос: {container="signal-lab-api"}<br />
-
-Результат: Вы увидите JSON-логи всех запросов и событий приложения.
-<p align="center">
-  <img src="./run_time.png" alt="Запуск логов" width="600"/>
-</p>
-
-> 2. Метрики (Prometheus)
- 
-Как убедиться, что метрики собираются:
-
-Откройте Grafana → Explore → выберите источник Prometheus.
-
-Выполните запрос: http_requests_total
-
-Результат: Вы увидите метрику счётчика запросов к API.
-
-> 3. Дашборды (Grafana)
-
-Как посмотреть на данные глазами SRE-инженера:
-
-Откройте Grafana → Dashboards → выберите "Signal Lab Overview".
-
-Результат: Вы увидите предварительно настроенный дашборд с графиками RPS, Latency и Error Rate.
-
-> 4. Отслеживание ошибок (Sentry)
-
-Как убедиться, что ошибки отлавливаются:
-
-Вызовите тестовую ошибку, выполнив в консоли:
-
-```bash
-curl http://localhost:3001/debug-sentry
-```
-Откройте интерфейс Sentry → вкладка Issues.
-
-Результат: Вы увидите зафиксированную ошибку с полным стектрейсом и контекстом.
-
-##  Commands (Hooks и автоматизация)
-Вся рутина автоматизирована через Makefile:
-
-### Команда	Что она делает
-> make setup	Полный запуск "с нуля": билд, миграции БД и старт UI.
-
-> make up	Запуск всей инфраструктуры (Docker-контейнеры).
-
-> make db-migrate	Применение миграций Prisma к базе данных.
-
-> make ui-dev	Запуск панели управления (UI) в режиме разработки.
-
-## Cursor Skills (AI Rules)
-В проекте используются кастомные правила для Cursor AI, чтобы обеспечить соблюдение архитектурных стандартов и паттернов.
-
-## Skill-файл	Назначение	Какую проблему решает
-> nest-architecture.mdc	Правила построения модулей NestJS	Гарантирует, что AI не нарушает структуру сервисов и контроллеров
- 
-> logging-standards.mdc	Стандарты структурированного логирования	AI использует правильный формат Winston для логов
-
-> prisma-patterns.mdc	Паттерны работы с Prisma	Обеспечение целостности транзакций и грамотной работы с БД
-
-##  Marketplace Skills (Объяснение)
-
-Почему мы не использовали Marketplace Skills?
-
-В этом проекте мы осознанно отказались от публичных правил из Marketplace в пользу полностью кастомных навыков, описанных в .cursor/rules/.
-
-Контроль: Мы точно знаем, какой контекст получает AI-агент.
-
-Безопасность: Никакие внешние инструкции не могут случайно изменить логику работы.
-
-Специфика: Marketplace-скиллы часто дают слишком общие советы, в то время как наши правила заточены под конкретный стек (NestJS, Prisma, Winston).
-
-##  Obsrvability Stack (Полный список)
-
-Задача	Инструмент	Порт<br/>
-Логирование	Loki (через Winston)	:3100<br/>
-Метрики	Prometheus	:9090<br/>
-Ошибки (Traces)	Sentry	:9000<br/>
-Визуализация	Grafana	:3002<br/>
-Сбор логов Docker	Promtail	-<br/>
-
-
-## Cursor & Marketplace Skills
-В проекте используются пользовательские правила курсора для разработки с поддержкой ИИ. Правила находятся в каталогах .cursorrules и .cursor/ и обеспечивают соблюдение архитектурных стандартов NestJS и стандартов логирования.
-
-## Hooks и Commands
-Автоматизация запуска: файл Makefile в корне проекта. 
-Это те самые "Commands". Теперь проект запускается одной командой make setup.
-
-##  Быстрый старт
-
-### 1.0. Запуск всей инфраструктуры (Docker)
-Из корня проекта запустите ядро и мониторинг:
-```bash
+# Либо только инфраструктура (Docker)
 docker-compose up -d --build
-```
-### 1.2. Подготовка базы данных
-```bash
+
+# Миграции Prisma
 docker-compose exec api npx prisma migrate dev --name init
-```
-### 1.3. Запуск панели управления (UI)
-```bash
-cd apps/web
-npm install
-npm run dev
+
+# Логи API в реальном времени
+docker-compose logs -f api
 ```
 
-### 1.4. Просмотр логов (Real-time)
-Чтобы увидеть, как генерируются сигналы в бэкенде:
-```bash
-docker-compose logs -f api
-# Development Timeline & Process
-```
-## ⏱ Отчет о разработке (Development Process)
-Проект был реализован в рамках таймбокса (целевое время 6–8 часов) с четким разделением на этапы для обеспечения качества архитектуры и наблюдаемости.
-### Этап 1: Инфраструктурный фундамент (День 1, 16:00 – 20:00)
-Фокус: Контейнеризация и Observability Stack.
-Результат: Развернуты Docker-контейнеры (PostgreSQL, Prometheus, Loki, Grafana). Настроены provisioning конфиги для автоматического подключения источников данных в Grafana.
-Итог: Стабильная среда, готовая к приему сигналов.
-### Этап 2: Ядро и Интеграция (День 1, 21:00 – 01:00)
-Фокус: Backend-логика, Prisma и Метрики.
-Результат: Инициализирован NestJS API. Внедрен PrometheusModule для сбора рантайм-метрик и Winston для структурированного JSON-логирования. Реализована схема Prisma и миграции для сохранения истории сценариев.
-### Этап 3: UI-слой и AI-автоматизация (День 2, 09:00 – 11:20)
-Фокус: Frontend (Next.js), Полировка UI и AI-слой (.cursor).
-Результат: Разработан интерфейс Signal Lab на Next.js с использованием shadcn/ui. Настроены .cursor/rules и commands для обеспечения автономной работы ИИ-агента в контексте проекта.
-Итог: Полная сквозная проверка системы (End-to-End) — от клика в UI до появления лога в Loki и записи в БД.
+## Проверка сценариев
+
+1. **Логи** — Grafana → Explore → источник Loki → `{container="signal-lab-api"}`.
+2. **Метрики** — Grafana → Explore → Prometheus → `http_requests_total`.
+3. **Дашборд** — Grafana → Dashboards → "Signal Lab Overview" (RPS, latency, error rate).
+4. **Ошибки** — `curl http://localhost:3001/debug-sentry` → Sentry → Issues.
+
+## Команды Makefile
+
+| Команда | Действие |
+|---|---|
+| `make setup` | полный запуск с нуля (билд + миграции + UI) |
+| `make up` | поднять инфраструктуру (Docker) |
+| `make db-migrate` | применить миграции Prisma |
+| `make ui-dev` | запустить UI в dev-режиме |
+
+## AI-правила
+
+В проекте — кастомные правила для Cursor (`.cursor/rules/`) под стек NestJS + Prisma + Winston: модульная структура, стандарты логирования, паттерны транзакций.
